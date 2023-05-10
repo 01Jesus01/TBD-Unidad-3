@@ -1,0 +1,146 @@
+Microsoft Windows [Versión 10.0.19045.2846]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\jrman>"C:\Program Files\MySQL\MySQL Shell 8.0\bin\mysqlsh.exe"
+MySQL Shell 8.0.32
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.32 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| agencia            |
+| comp2              |
+| company            |
+| eva_2              |
+| eva_3              |
+| evaluacion_1       |
+| hospital           |
+| human_resources    |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+14 rows in set (0.0056 sec)
+ MySQL  localhost:3306 ssl  SQL > use eva_3;
+Default schema set to `eva_3`.
+Fetching global names, object names from `eva_3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  eva_3  SQL > show tables;
++-----------------+
+| Tables_in_eva_3 |
++-----------------+
+| actor           |
++-----------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > create table personas (id int auto_increment key, nombre varchar(50) not null, apellido_pat varchar(50) not null, apellido_mat varchar(50) null, fecha_nac date, clave_rfc varchar (12) null);
+Query OK, 0 rows affected (0.0187 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > desc personas;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| id           | int         | NO   | PRI | NULL    | auto_increment |
+| nombre       | varchar(50) | NO   |     | NULL    |                |
+| apellido_pat | varchar(50) | NO   |     | NULL    |                |
+| apellido_mat | varchar(50) | YES  |     | NULL    |                |
+| fecha_nac    | date        | YES  |     | NULL    |                |
+| clave_rfc    | varchar(12) | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Axel Felipe', 'Reyes', 'Valadez', '2000-8-15');
+Query OK, 1 row affected (0.0075 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > select * from personas;
++----+-------------+--------------+--------------+------------+-----------+
+| id | nombre      | apellido_pat | apellido_mat | fecha_nac  | clave_rfc |
++----+-------------+--------------+--------------+------------+-----------+
+|  1 | Axel Felipe | Reyes        | Valadez      | 2000-08-15 | NULL      |
++----+-------------+--------------+--------------+------------+-----------+
+1 row in set (0.0004 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Luis Daniel', 'Delgado', 'Enriquez', '2002-6-16');
+Query OK, 1 row affected (0.0138 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Jesus Manuel', 'Arellano', 'Merendon', '2002-8-25');
+Query OK, 1 row affected (0.0138 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Luis Angel', 'Soto', 'Hernandez', '2002-9-20');
+Query OK, 1 row affected (0.0138 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Dilan Mauricio', 'Hernandez', 'Hernandez', '2000-4-2');
+Query OK, 1 row affected (0.0138 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Israel', 'Chacon', 'Lopez', '2001-8-26');
+Query OK, 1 row affected (0.0138 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Jesus Elias', 'Sierra', 'Ruiz', '2002-5-29');
+Query OK, 1 row affected (0.0137 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > select * from personas;
++----+----------------+--------------+--------------+------------+-----------+
+| id | nombre         | apellido_pat | apellido_mat | fecha_nac  | clave_rfc |
++----+----------------+--------------+--------------+------------+-----------+
+|  1 | Axel Felipe    | Reyes        | Valadez      | 2000-08-15 | NULL      |
+|  2 | Luis Daniel    | Delgado      | Enriquez     | 2002-06-16 | NULL      |
+|  3 | Jesus Manuel   | Arellano     | Merendon     | 2002-08-25 | NULL      |
+|  4 | Luis Angel     | Soto         | Hernandez    | 2002-09-20 | NULL      |
+|  5 | Dilan Mauricio | Hernandez    | Hernandez    | 2000-04-02 | NULL      |
+|  6 | Israel         | Chacon       | Lopez        | 2001-08-26 | NULL      |
+|  7 | Jesus Elias    | Sierra       | Ruiz         | 2002-05-29 | NULL      |
++----+----------------+--------------+--------------+------------+-----------+
+7 rows in set (0.0004 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Erick Fernando', 'Siquieros', '', '2000-7-13');
+Query OK, 1 row affected (0.0157 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Erick Rodrigo', 'Perez', 'Lozano', '2002-9-10');
+Query OK, 1 row affected (0.0154 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > insert into personas (nombre, apellido_pat, apellido_mat, fecha_nac) values ('Jesus Armando', 'Sosa', 'Loya', '2000-6-9');
+Query OK, 1 row affected (0.0081 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > select * from personas;
++----+----------------+--------------+--------------+------------+-----------+
+| id | nombre         | apellido_pat | apellido_mat | fecha_nac  | clave_rfc |
++----+----------------+--------------+--------------+------------+-----------+
+|  1 | Axel Felipe    | Reyes        | Valadez      | 2000-08-15 | NULL      |
+|  2 | Luis Daniel    | Delgado      | Enriquez     | 2002-06-16 | NULL      |
+|  3 | Jesus Manuel   | Arellano     | Merendon     | 2002-08-25 | NULL      |
+|  4 | Luis Angel     | Soto         | Hernandez    | 2002-09-20 | NULL      |
+|  5 | Dilan Mauricio | Hernandez    | Hernandez    | 2000-04-02 | NULL      |
+|  6 | Israel         | Chacon       | Lopez        | 2001-08-26 | NULL      |
+|  7 | Jesus Elias    | Sierra       | Ruiz         | 2002-05-29 | NULL      |
+|  8 | Erick Fernando | Siquieros    |              | 2000-07-13 | NULL      |
+|  9 | Erick Rodrigo  | Perez        | Lozano       | 2002-09-10 | NULL      |
+| 10 | Jesus Armando  | Sosa         | Loya         | 2000-06-09 | NULL      |
++----+----------------+--------------+--------------+------------+-----------+
+10 rows in set (0.0004 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > select generar_rfc('Reyes', 'Valadez', 'Axel Felipe', '2000-08-15');
++--------------------------------------------------------------+
+| generar_rfc('Reyes', 'Valadez', 'Axel Felipe', '2000-08-15') |
++--------------------------------------------------------------+
+| RVA2000815                                                   |
++--------------------------------------------------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > call actualizar_rfc();
+Query OK, 0 rows affected (0.0145 sec)
+ MySQL  localhost:3306 ssl  eva_3  SQL > select * from personas;
++----+----------------+--------------+--------------+------------+------------+
+| id | nombre         | apellido_pat | apellido_mat | fecha_nac  | clave_rfc  |
++----+----------------+--------------+--------------+------------+------------+
+|  1 | Axel Felipe    | Reyes        | Valadez      | 2000-08-15 | ARV2000815 |
+|  2 | Luis Daniel    | Delgado      | Enriquez     | 2002-06-16 | LDE2002616 |
+|  3 | Jesus Manuel   | Arellano     | Merendon     | 2002-08-25 | JAM2002825 |
+|  4 | Luis Angel     | Soto         | Hernandez    | 2002-09-20 | LSH2002920 |
+|  5 | Dilan Mauricio | Hernandez    | Hernandez    | 2000-04-02 | DHH200042  |
+|  6 | Israel         | Chacon       | Lopez        | 2001-08-26 | ICL2001826 |
+|  7 | Jesus Elias    | Sierra       | Ruiz         | 2002-05-29 | JSR2002529 |
+|  8 | Erick Fernando | Siquieros    |              | 2000-07-13 | ES2000713  |
+|  9 | Erick Rodrigo  | Perez        | Lozano       | 2002-09-10 | EPL2002910 |
+| 10 | Jesus Armando  | Sosa         | Loya         | 2000-06-09 | JSL200069  |
++----+----------------+--------------+--------------+------------+------------+
+10 rows in set (0.0004 sec)
